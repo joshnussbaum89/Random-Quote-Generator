@@ -8,25 +8,30 @@ const quotes = [
     quote: "The unexamined life is not worth living.",
     source: "Socrates",
     citation: "Apology of Socrates",
-    year: "399 BCE"
+    year: "399 BCE",
+    tag: "Philosophy"
   },
   {
     quote: "I love being a carbon molecule.",
-    source: "Duncan Trussell"
+    source: "Duncan Trussell",
+    tag: "Comedy"
   },
   {
     quote: "If you tried to give rock and roll another name, you might call it Chuck Berry.",
     source: "Keith Richards",
     citation: "The Mike Douglas Show",
-    year: 1972
+    year: 1972,
+    tag: "Music"
   },
   {
     quote: "You know you’re in love when you can’t fall asleep because reality is finally better than your dreams.",
-    source: "Dr. Suess"
+    source: "Dr. Suess",
+    tag: "Literature"
   },
   {
     quote: "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.",
-    source: "Malcolm X"
+    source: "Malcolm X",
+    tag: "American History"
   }
 ];
 
@@ -44,7 +49,8 @@ const printQuote = () => {
   const randomQuote = getRandomQuote();
   // empty string to build what will be printed to page
   let quoteString = `<p class="quote">${randomQuote.quote}</p>
-                     <p class="source">${randomQuote.source}`;
+                     <p class="source">${randomQuote.source}</p>
+                     <p class="tag">${randomQuote.tag}`;
 
   // if citation for selected quote is undefined, add <span> elements to print citation
   if (randomQuote.citation !== undefined) {

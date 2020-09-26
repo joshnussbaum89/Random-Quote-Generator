@@ -1,16 +1,8 @@
 /******************************************
-Treehouse FSJS Techdegree:
-project 1 - A Random Quote Generator
+        A Random Quote Generator
 ******************************************/
 
-// For assistance: 
-// Check the "Project Resources" section of the project instructions
-// Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
-/*** 
- * `quotes` array 
-***/
-
+// Quotes Array
 const quotes = [
   {
     quote: "The unexamined life is not worth living.",
@@ -38,41 +30,37 @@ const quotes = [
   }
 ];
 
-/***
- * `getRandomQuote` function
-***/
-
+// Random quote function
 const getRandomQuote = () => {
+  // store random number
   const randomNumber = Math.floor(Math.random() * quotes.length);
+  // grab quote using randomNumber variable as index
   return quotes[randomNumber];
 }
 
-/***
- * `printQuote` function
-***/
-
+// Print quote function 
 const printQuote = () => {
+  // store quote retrieved from getRandomQuote function
   const randomQuote = getRandomQuote();
-  let quoteString = '';
+  // empty string to build what will be printed to page
+  let quoteString = `<p class="quote">${randomQuote.quote}</p>
+                     <p class="source">${randomQuote.source}`;
 
-  if (randomQuote.citation !== undefined && randomQuote.year !== undefined) {
-    quoteString += `<p class="quote">${randomQuote.quote}</p>
-                      <p class="source">${randomQuote.source}
-                        <span class="citation">${randomQuote.citation}</span>
-                        <span class="year">${randomQuote.year}</span>
-                      </p>`;
-  } else {
-    quoteString += `<p class="quote">${randomQuote.quote}</p>
-                      <p class="source">${randomQuote.source}`;
+  // if citation for selected quote is undefined, add <span> elements to print citation
+  if (randomQuote.citation !== undefined) {
+    quoteString += `<span class="citation">${randomQuote.citation}</span>`;
   }
+  // if year for selected quote is undefined, add <span> elements to print year
+  if (randomQuote.year !== undefined) {
+    quoteString += `<span class="year">${randomQuote.year}</span>`;
+  }
+  // close string with </p> tag
+  quoteString += `</p>`;
+  // print all text to page
   document.getElementById('quote-box').innerHTML = quoteString;
 }
 
+// call printQuote function
 printQuote();
-
-/***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
-***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);

@@ -43,14 +43,32 @@ const quotes = [
 ***/
 
 const getRandomQuote = () => {
-
+  const randomNumber = Math.floor(Math.random() * quotes.length);
+  return quotes[randomNumber];
 }
 
 /***
  * `printQuote` function
 ***/
 
+const printQuote = () => {
+  const randomQuote = getRandomQuote();
+  let quoteString = '';
 
+  if (randomQuote.citation !== undefined && randomQuote.year !== undefined) {
+    quoteString += `<p class="quote">${randomQuote.quote}</p>
+                      <p class="source">${randomQuote.source}
+                        <span class="citation">${randomQuote.citation}</span>
+                        <span class="year">${randomQuote.year}</span>
+                      </p>`;
+  } else {
+    quoteString += `<p class="quote">${randomQuote.quote}</p>
+                      <p class="source">${randomQuote.source}`;
+  }
+  document.getElementById('quote-box').innerHTML = quoteString;
+}
+
+printQuote();
 
 /***
  * click event listener for the print quote button

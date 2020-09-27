@@ -114,8 +114,8 @@ changeBackgroundColor();
 // Call printQuote function
 printQuote();
 
-// Change background color and quote every 20 seconds 
+// Change background color and quote every 10 seconds 
 const colorAndQuoteTimer = setInterval(() => {
   printQuote();
   changeBackgroundColor();
-}, 5000);
+}, 10000);

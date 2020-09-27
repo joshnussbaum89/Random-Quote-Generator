@@ -118,4 +118,4 @@ printQuote();
 setInterval(() => {
   printQuote();
   changeBackgroundColor();
-}, 5000);
+}, 20000);

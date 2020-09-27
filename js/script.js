@@ -103,8 +103,9 @@ const randomColor = () => Math.floor(Math.random() * 255) + 1;
 
 // Page button, click to produce new quote and change color 
 document.getElementById('load-quote').addEventListener("click", () => {
-  printQuote();
-  changeBackgroundColor();
+  // printQuote();
+  // changeBackgroundColor();
+  window.location.reload(); // reload page to reset timer
 });
 
 // Call the change background color function to random color
@@ -117,4 +118,4 @@ printQuote();
 setInterval(() => {
   printQuote();
   changeBackgroundColor();
-}, 20000);
+}, 5000);

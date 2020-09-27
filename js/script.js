@@ -65,15 +65,15 @@ const printQuote = () => {
                      <p class="source">${randomQuote.source}`;
 
   // if citation for selected quote is defined, add <span> elements to print citation
-  if (randomQuote.citation !== undefined) {
+  if (randomQuote.citation) {
     quoteString += `<span class="citation">${randomQuote.citation}</span>`;
   }
   // if year for selected quote is defined, add <span> elements to print year
-  if (randomQuote.year !== undefined) {
+  if (randomQuote.year) {
     quoteString += `<span class="year">${randomQuote.year}</span>`;
   }
   // if tag for selected quote is defined, add <span> elements to print tag
-  if (randomQuote.tag !== undefined) {
+  if (randomQuote.tag) {
     quoteString += `<span class="tag"> ${randomQuote.tag}</span>`;
   }
   // close string with </p> tag
@@ -103,9 +103,9 @@ const randomColor = () => Math.floor(Math.random() * 255) + 1;
 
 // Page button, click to produce new quote and change color 
 document.getElementById('load-quote').addEventListener("click", () => {
-  // printQuote();
-  // changeBackgroundColor();
-  window.location.reload(); // reload page to reset timer
+  printQuote();
+  changeBackgroundColor();
+  clearInterval(colorAndQuoteTimer); // clear timer
 });
 
 // Call the change background color function to random color
@@ -115,7 +115,7 @@ changeBackgroundColor();
 printQuote();
 
 // Change background color and quote every 20 seconds 
-setInterval(() => {
+const colorAndQuoteTimer = setInterval(() => {
   printQuote();
   changeBackgroundColor();
-}, 20000);
+}, 5000);

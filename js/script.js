@@ -93,7 +93,7 @@ const changeBackgroundColor = () => {
 };
 
 // Produce random number between 1 and 256 and asign the values to the backgroundColor variable in changeBackgroundColor()
-const randomColor = () => Math.floor(Math.random() * 256);
+const randomColor = () => Math.floor(Math.random() * 255) + 1;
 
 
 

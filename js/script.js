@@ -2,6 +2,8 @@
         A Random Quote Generator
 ******************************************/
 
+
+
 // Quotes Array
 const quotes = [
   {
@@ -32,8 +34,19 @@ const quotes = [
     quote: "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.",
     source: "Malcolm X",
     tag: "American History"
+  },
+  {
+    quote: "Writing about music is like dancing about architecture.",
+    source: "Thelonious Monk",
+    tag: "Jazz, Music"
   }
 ];
+
+
+
+/******************************************
+                Functions
+******************************************/
 
 // Random quote function
 const getRandomQuote = () => {
@@ -49,16 +62,19 @@ const printQuote = () => {
   const randomQuote = getRandomQuote();
   // empty string to build what will be printed to page
   let quoteString = `<p class="quote">${randomQuote.quote}</p>
-                     <p class="source">${randomQuote.source}</p>
-                     <p class="tag">${randomQuote.tag}`;
+                     <p class="source">${randomQuote.source}`;
 
-  // if citation for selected quote is undefined, add <span> elements to print citation
+  // if citation for selected quote is defined, add <span> elements to print citation
   if (randomQuote.citation !== undefined) {
     quoteString += `<span class="citation">${randomQuote.citation}</span>`;
   }
-  // if year for selected quote is undefined, add <span> elements to print year
+  // if year for selected quote is defined, add <span> elements to print year
   if (randomQuote.year !== undefined) {
     quoteString += `<span class="year">${randomQuote.year}</span>`;
+  }
+  // if tag for selected quote is defined, add <span> elements to print tag
+  if (randomQuote.tag !== undefined) {
+    quoteString += `<span class="tag"> ${randomQuote.tag}</span>`;
   }
   // close string with </p> tag
   quoteString += `</p>`;
@@ -66,7 +82,39 @@ const printQuote = () => {
   document.getElementById('quote-box').innerHTML = quoteString;
 }
 
-// call printQuote function
+// Change background color function
+const changeBackgroundColor = () => {
+  // Select the body tag
+  const body = document.querySelector('body');
+  // hold value of random rgb values
+  const backgroundColor = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+  // set background color
+  body.style.backgroundColor = backgroundColor;
+}
+
+// Produce random number between 1 and 256 and asign the values to the backgroundColor variable in changeBackgroundColor()
+const randomColor = () => Math.floor(Math.random() * 256);
+
+
+
+/******************************************
+            Call Functions
+******************************************/
+
+// Page button, click to produce new quote and change color 
+document.getElementById('load-quote').addEventListener("click", () => {
+  printQuote();
+  changeBackgroundColor();
+});
+
+// Call the change background color function to random color
+changeBackgroundColor();
+
+// Call printQuote function
 printQuote();
 
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
+// Change background color and quote every 20 seconds 
+setInterval(() => {
+  printQuote();
+  changeBackgroundColor();
+}, 20000);

@@ -115,6 +115,15 @@ h1 {
   font-style: normal;
 }
 
+.tag {
+  font-variant: small-caps;
+  font-size: 1rem;
+}
+
+.tag:before {
+  content: ", ";
+}
+
 @media (min-width: 768px) {
   body {
     padding: 25px;

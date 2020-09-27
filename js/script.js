@@ -54,7 +54,7 @@ const getRandomQuote = () => {
   const randomNumber = Math.floor(Math.random() * quotes.length);
   // grab quote using randomNumber variable as index
   return quotes[randomNumber];
-}
+};
 
 // Print quote function 
 const printQuote = () => {
@@ -80,7 +80,7 @@ const printQuote = () => {
   quoteString += `</p>`;
   // print all text to page
   document.getElementById('quote-box').innerHTML = quoteString;
-}
+};
 
 // Change background color function
 const changeBackgroundColor = () => {
@@ -90,7 +90,7 @@ const changeBackgroundColor = () => {
   const backgroundColor = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
   // set background color
   body.style.backgroundColor = backgroundColor;
-}
+};
 
 // Produce random number between 1 and 256 and asign the values to the backgroundColor variable in changeBackgroundColor()
 const randomColor = () => Math.floor(Math.random() * 256);

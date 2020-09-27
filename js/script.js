@@ -110,6 +110,15 @@ const randomColor = () => Math.floor(Math.random() * 255);
 document.getElementById('load-quote').addEventListener("click", () => {
   printQuote();
   changeBackgroundColor();
+
+  // clear timer
+  clearInterval(colorAndQuoteTimer);
+
+  // reset timer 
+  setInterval(() => {
+    printQuote();
+    changeBackgroundColor();
+  }, 10000);
 });
 
 // Call the change background color function to random color

@@ -26,6 +26,11 @@ const quotes = [
     tag: "Music"
   },
   {
+    quote: "Your body is not a temple, it's an amusement park. Enjoy the ride.",
+    source: "Anthony Bourdain",
+    tag: "Food, Travel"
+  },
+  {
     quote: "You know you’re in love when you can’t fall asleep because reality is finally better than your dreams.",
     source: "Dr. Suess",
     tag: "Literature"
@@ -105,7 +110,9 @@ const randomColor = () => Math.floor(Math.random() * 255) + 1;
 document.getElementById('load-quote').addEventListener("click", () => {
   printQuote();
   changeBackgroundColor();
-  clearInterval(colorAndQuoteTimer); // clear timer
+
+  // clear timer
+  clearInterval(colorAndQuoteTimer);
 });
 
 // Call the change background color function to random color

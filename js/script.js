@@ -92,13 +92,13 @@ const changeBackgroundColor = () => {
   // Select the body tag
   const body = document.querySelector('body');
   // hold value of random rgb values
-  const backgroundColor = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+  const randomRGB = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
   // set background color
-  body.style.backgroundColor = backgroundColor;
+  body.style.backgroundColor = randomRGB;
 };
 
 // Produce random number between 1 and 256 and asign the values to the backgroundColor variable in changeBackgroundColor()
-const randomColor = () => Math.floor(Math.random() * 255) + 1;
+const randomColor = () => Math.floor(Math.random() * 255);
 
 
 
@@ -110,9 +110,6 @@ const randomColor = () => Math.floor(Math.random() * 255) + 1;
 document.getElementById('load-quote').addEventListener("click", () => {
   printQuote();
   changeBackgroundColor();
-
-  // clear timer
-  clearInterval(colorAndQuoteTimer);
 });
 
 // Call the change background color function to random color

@@ -2,7 +2,9 @@
         A Random Quote Generator
 ******************************************/
 
-
+// Global variables
+let setColorAndQuoteTimer;
+let colorAndQuoteTimer;
 
 // Quotes Array
 const quotes = [
@@ -53,52 +55,67 @@ const quotes = [
                 Functions
 ******************************************/
 
-// Random quote function
+/******
+Random quote function:  1.) Store random number 2.) Grab quote using randomNumber variable as index
+*******/
 const getRandomQuote = () => {
-  // store random number
   const randomNumber = Math.floor(Math.random() * quotes.length);
-  // grab quote using randomNumber variable as index
   return quotes[randomNumber];
 };
 
-// Print quote function 
+/******
+Print quote function:  1.) Store quote retrieved from getRandomQuote function 2.) Initilize quoteString variable to build what will be printed to page 3.) If citation for selected quote is defined, add <span> elements to print citation 4.) If year for selected quote is defined, add <span> elements to print year 5.) If tag for selected quote is defined, add <span> elements to print tag 6.) Close string with </p> tag 7.) Print all text to page
+*******/
 const printQuote = () => {
-  // store quote retrieved from getRandomQuote function
   const randomQuote = getRandomQuote();
-  // empty string to build what will be printed to page
   let quoteString = `<p class="quote">${randomQuote.quote}</p>
                      <p class="source">${randomQuote.source}`;
 
-  // if citation for selected quote is defined, add <span> elements to print citation
   if (randomQuote.citation) {
     quoteString += `<span class="citation">${randomQuote.citation}</span>`;
   }
-  // if year for selected quote is defined, add <span> elements to print year
   if (randomQuote.year) {
     quoteString += `<span class="year">${randomQuote.year}</span>`;
   }
-  // if tag for selected quote is defined, add <span> elements to print tag
   if (randomQuote.tag) {
     quoteString += `<span class="tag"> ${randomQuote.tag}</span>`;
   }
-  // close string with </p> tag
   quoteString += `</p>`;
-  // print all text to page
   document.getElementById('quote-box').innerHTML = quoteString;
 };
 
-// Change background color function
+/******
+Change background color function:  1.) Select the body tag 2.) Store random RGB values 3.) Set body to random RGB
+*******/
 const changeBackgroundColor = () => {
-  // Select the body tag
   const body = document.querySelector('body');
-  // hold value of random rgb values
   const randomRGB = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
-  // set background color
   body.style.backgroundColor = randomRGB;
 };
 
-// Produce random number between 1 and 256 and asign the values to the backgroundColor variable in changeBackgroundColor()
+/****** 
+Random color function:  Produce random number between 1 and 256 and asign the values to the backgroundColor variable in changeBackgroundColor()
+*******/
 const randomColor = () => Math.floor(Math.random() * 255);
+
+/******
+Print quote and color function:  Single function to print quote to page and change background color
+*******/
+const printQuoteAndColor = () => {
+  printQuote();
+  changeBackgroundColor();
+}
+
+/******
+Set color and timer function:  1.) Quote and color change 2.) 10 second timer is cleared 3.) Timer is assigned to colorAndQuoteTimer variable
+*******/
+setColorAndQuoteTimer = () => {
+  printQuoteAndColor();
+  clearInterval(colorAndQuoteTimer);
+  colorAndQuoteTimer = setInterval(() => {
+    printQuoteAndColor();
+  }, 10000);
+}
 
 
 
@@ -106,29 +123,11 @@ const randomColor = () => Math.floor(Math.random() * 255);
             Call Functions
 ******************************************/
 
-// Page button, click to produce new quote and change color 
-document.getElementById('load-quote').addEventListener("click", () => {
-  printQuote();
-  changeBackgroundColor();
+// Print quote and color to page
+printQuoteAndColor();
 
-  // clear timer
-  clearInterval(colorAndQuoteTimer);
+// Set timer
+setColorAndQuoteTimer();
 
-  // reset timer 
-  setInterval(() => {
-    printQuote();
-    changeBackgroundColor();
-  }, 10000);
-});
-
-// Call the change background color function to random color
-changeBackgroundColor();
-
-// Call printQuote function
-printQuote();
-
-// Change background color and quote every 10 seconds 
-const colorAndQuoteTimer = setInterval(() => {
-  printQuote();
-  changeBackgroundColor();
-}, 10000);
+// Click page button to produce new quote, change color and set timer
+document.getElementById('load-quote').addEventListener("click", setColorAndQuoteTimer, false);
